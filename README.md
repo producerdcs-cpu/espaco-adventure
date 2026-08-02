@@ -54,21 +54,6 @@ espaco-adventure/
     └── randomizer.test.js
 ```
 
-## Sistemas de Aleatoriedade
-
-| Módulo | Descrição |
-|--------|----------|
-| **Sorteio de Tema** | Seleção aleatória ponderada de temas filosóficos |
-| **Match de Participantes** | Algoritmo de complementaridade cruzada |
-| **Debate Relâmpago** | Sorteio de tema em tempo real (2-5 min) |
-| **Encontro Surpresa** | Combinação cross-industry inesperada |
-
-## Workflow de Eventos
-
-```
-Ideação → Em Formulação → Agendado → Em Andamento → Realizado → Encerrado
-```
-
 ## Licença
 
 © 2026 DcsProducer®. Todos os direitos reservados.

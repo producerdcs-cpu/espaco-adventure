@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espaço Adventure | DcsProducer®</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0a0a0f;
+      color: #f0f0f5;
+      overflow: hidden;
+    }
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slide {
+      width: min(1920px, 100vw);
+      height: min(1080px, 100vh);
+      padding: 80px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+      position: relative;
+    }
+    .slide.active { display: flex; }
+    .slide h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #e94560, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .slide h2 {
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      color: #e94560;
+      margin-bottom: 1.5rem;
+    }
+    .slide p, .slide li {
+      font-size: clamp(1rem, 1.8vw, 1.5rem);
+      line-height: 1.6;
+      color: #c0c0d0;
+    }
+    .slide ul { list-style: none; padding-left: 0; }
+    .slide li { margin: 0.75rem 0; padding-left: 1.5rem; position: relative; }
+    .slide li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #e94560;
+    }
+    .brand {
+      position: absolute;
+      bottom: 40px;
+      right: 60px;
+      font-size: 0.9rem;
+      color: #666;
+      letter-spacing: 0.1em;
+    }
+    .nav {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 100;
+    }
+    .nav button {
+      background: rgba(233, 69, 96, 0.2);
+      border: 1px solid #e94560;
+      color: #e94560;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .nav button:hover { background: #e94560; color: #fff; }
+    .tagline {
+      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      color: #a0a0b0;
+      font-style: italic;
+      margin-top: 1rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(233,69,96,0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .card h3 { color: #e94560; margin-bottom: 0.5rem; font-size: 1.3rem; }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <!-- Slide 1: Capa -->
+    <div class="slide active" data-slide="0">
+      <h1>Espaço Adventure</h1>
+      <p class="tagline">Onde a filosofia da palavra encontra o poder de transformar eventos.</p>
+      <p style="margin-top: 2rem; color: #888;">DcsProducer® | v1.0 | Agosto 2026</p>
+      <div class="brand">DcsProducer®</div>
+    </div>
+
+    <!-- Slide 2: Sobre -->
+    <div class="slide" data-slide="1">
+      <h2>Sobre o Projeto</h2>
+      <p>Plataforma de produção de eventos que une o poder filosófico da linguagem com sistemas reais de formulação de encontros aleatórios e entretenimento profissional.</p>
+      <ul style="margin-top: 2rem;">
+        <li>🎲 Sistema de Aleatoriedade (4 modos)</li>
+        <li>🎭 6 Áreas de Entretenimento</li>
+        <li>📡 Formatos: Presencial, Online, Híbrido</li>
+        <li>💬 Filosofia da Palavra como motor criativo</li>
+      </ul>
+      <div class="brand">DcsProducer®</div>
+    </div>
+
+    <!-- Slide 3: Sistemas de Aleatoriedade -->
+    <div class="slide" data-slide="2">
+      <h2>Sistemas de Aleatoriedade</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Sorteio de Tema</h3>
+          <p>Seleção aleatória ponderada de temas filosóficos + provocação textual.</p>
+        </div>
+        <div class="card">
+          <h3>Match de Participantes</h3>
+          <p>Algoritmo de complementaridade cruzada para pares e grupos diversos.</p>
+        </div>
+        <div class="card">
+          <h3>Debate Relâmpago</h3>
+          <p>Tema sorteado em tempo real. Confronto estruturado de 2-5 min.</p>
+        </div>
+        <div class="card">
+          <h3>Encontro Surpresa</h3>
+          <p>Combinação cross-industry inesperada com roteiro mínimo.</p>
+        </div>
+      </div>
+      <div class="brand">DcsProducer®</div>
+    </div>
+
+    <!-- Slide 4: Workflow -->
+    <div class="slide" data-slide="3">
+      <h2>Workflow de Eventos</h2>
+      <p style="margin-top: 1rem; font-size: 1.4rem; letter-spacing: 0.05em;">
+        Ideação → Em Formulação → Agendado → Em Andamento → Realizado → Encerrado
+      </p>
+      <ul style="margin-top: 2.5rem;">
+        <li><strong>Ideação</strong> — Conceito inicial</li>
+        <li><strong>Em Formulação</strong> — Formato, público e logística</li>
+        <li><strong>Agendado</strong> — Data, local e participantes</li>
+        <li><strong>Em Andamento</strong> — Execução ao vivo</li>
+        <li><strong>Realizado</strong> — Feedback e registro</li>
+        <li><strong>Encerrado</strong> — Arquivamento final</li>
+      </ul>
+      <div class="brand">DcsProducer®</div>
+    </div>
+
+    <!-- Slide 5: Tech Stack -->
+    <div class="slide" data-slide="4">
+      <h2>Tech Stack</h2>
+      <ul style="margin-top: 1.5rem;">
+        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (Vanilla)</li>
+        <li><strong>Apresentação:</strong> Slide Deck responsivo (1920×1080)</li>
+        <li><strong>Gestão:</strong> ClickUp (Lists, Custom Fields, Automations)</li>
+        <li><strong>Versionamento:</strong> GitHub</li>
+      </ul>
+      <div class="brand">DcsProducer®</div>
+    </div>
+
+    <!-- Slide 6: Encerramento -->
+    <div class="slide" data-slide="5">
+      <h1>Obrigado</h1>
+      <p class="tagline">Espaço Adventure — Transformando encontros com a filosofia da palavra.</p>
+      <p style="margin-top: 2rem; color: #888;">© 2026 DcsProducer®</p>
+      <div class="brand">DcsProducer®</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button onclick="prev()">← Anterior</button>
+    <button onclick="next()">Próximo →</button>
+  </div>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+    function show(n) {
+      slides.forEach(s => s.classList.remove('active'));
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+    }
+    function next() { show(current + 1); }
+    function prev() { show(current - 1); }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  </script>
+</body>
+</html>

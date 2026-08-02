@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#ff6b6b"/>
+    </linearGradient>
+  </defs>
+  <text x="10" y="52" font-family="Segoe UI, system-ui, sans-serif" font-size="36" font-weight="700" fill="url(#g)">DcsProducer</text>
+  <text x="250" y="40" font-family="Segoe UI, system-ui, sans-serif" font-size="18" fill="#e94560">®</text>
+</svg>

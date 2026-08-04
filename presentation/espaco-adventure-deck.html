@@ -22,7 +22,7 @@
     .slide {
       width: min(1920px, 100vw);
       height: min(1080px, 100vh);
-      padding: 80px;
+      padding: 70px 80px;
       display: none;
       flex-direction: column;
       justify-content: center;
@@ -40,17 +40,17 @@
       background-clip: text;
     }
     .slide h2 {
-      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       color: #e94560;
       margin-bottom: 1.5rem;
     }
     .slide p, .slide li {
-      font-size: clamp(1rem, 1.8vw, 1.5rem);
+      font-size: clamp(1rem, 1.7vw, 1.4rem);
       line-height: 1.6;
       color: #c0c0d0;
     }
     .slide ul { list-style: none; padding-left: 0; }
-    .slide li { margin: 0.75rem 0; padding-left: 1.5rem; position: relative; }
+    .slide li { margin: 0.65rem 0; padding-left: 1.5rem; position: relative; }
     .slide li::before {
       content: '▸';
       position: absolute;
@@ -59,15 +59,15 @@
     }
     .brand {
       position: absolute;
-      bottom: 40px;
+      bottom: 36px;
       right: 60px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #666;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
     }
     .nav {
       position: fixed;
-      bottom: 30px;
+      bottom: 28px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -75,120 +75,229 @@
       z-index: 100;
     }
     .nav button {
-      background: rgba(233, 69, 96, 0.2);
+      background: rgba(233, 69, 96, 0.18);
       border: 1px solid #e94560;
       color: #e94560;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: all 0.2s;
     }
     .nav button:hover { background: #e94560; color: #fff; }
     .tagline {
-      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      font-size: clamp(1.15rem, 2.1vw, 1.7rem);
       color: #a0a0b0;
       font-style: italic;
-      margin-top: 1rem;
+      margin-top: 0.8rem;
     }
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 1.5rem;
+      gap: 1.6rem;
+      margin-top: 1.4rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.4rem;
+      margin-top: 1.4rem;
     }
     .card {
       background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(233,69,96,0.3);
+      border: 1px solid rgba(233,69,96,0.28);
       border-radius: 12px;
-      padding: 1.5rem;
+      padding: 1.35rem;
     }
-    .card h3 { color: #e94560; margin-bottom: 0.5rem; font-size: 1.3rem; }
+    .card h3 { color: #e94560; margin-bottom: 0.45rem; font-size: 1.2rem; }
+    .card p { font-size: 0.98rem; }
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.5rem 0;
+      font-size: 1.15rem;
+    }
+    .flow span {
+      background: rgba(233,69,96,0.15);
+      border: 1px solid rgba(233,69,96,0.4);
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      color: #f0a0b0;
+    }
+    .slide-counter {
+      position: absolute;
+      bottom: 36px;
+      left: 60px;
+      font-size: 0.85rem;
+      color: #555;
+    }
   </style>
 </head>
 <body>
   <div class="deck">
-    <!-- Slide 1: Capa -->
+
+    <!-- 0. Capa -->
     <div class="slide active" data-slide="0">
       <h1>Espaço Adventure</h1>
       <p class="tagline">Onde a filosofia da palavra encontra o poder de transformar eventos.</p>
-      <p style="margin-top: 2rem; color: #888;">DcsProducer® | v1.0 | Agosto 2026</p>
+      <p style="margin-top: 2.2rem; color: #777;">DcsProducer® | v1.1 | Agosto 2026</p>
       <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">01 / 09</div>
     </div>
 
-    <!-- Slide 2: Sobre -->
+    <!-- 1. Sobre -->
     <div class="slide" data-slide="1">
       <h2>Sobre o Projeto</h2>
       <p>Plataforma de produção de eventos que une o poder filosófico da linguagem com sistemas reais de formulação de encontros aleatórios e entretenimento profissional.</p>
-      <ul style="margin-top: 2rem;">
-        <li>🎲 Sistema de Aleatoriedade (4 modos)</li>
+      <ul style="margin-top: 1.8rem;">
+        <li>🎲 Sistema de Aleatoriedade com 4 modos distintos</li>
         <li>🎭 6 Áreas de Entretenimento</li>
-        <li>📡 Formatos: Presencial, Online, Híbrido</li>
+        <li>📡 Formatos: Presencial, Online e Híbrido</li>
         <li>💬 Filosofia da Palavra como motor criativo</li>
+        <li>🔗 Integração nativa com ClickUp</li>
       </ul>
       <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">02 / 09</div>
     </div>
 
-    <!-- Slide 3: Sistemas de Aleatoriedade -->
+    <!-- 2. Sistemas de Aleatoriedade -->
     <div class="slide" data-slide="2">
       <h2>Sistemas de Aleatoriedade</h2>
       <div class="grid-2">
         <div class="card">
           <h3>Sorteio de Tema</h3>
-          <p>Seleção aleatória ponderada de temas filosóficos + provocação textual.</p>
+          <p>40 temas filosóficos com seleção ponderada + provocação textual. Histórico reduz repetição.</p>
         </div>
         <div class="card">
           <h3>Match de Participantes</h3>
-          <p>Algoritmo de complementaridade cruzada para pares e grupos diversos.</p>
+          <p>Algoritmo de complementaridade cruzada: diversidade de área + interesses + experiência.</p>
         </div>
         <div class="card">
           <h3>Debate Relâmpago</h3>
-          <p>Tema sorteado em tempo real. Confronto estruturado de 2-5 min.</p>
+          <p>Tema sorteado em tempo real. Confronto estruturado de 2 a 5 minutos com fases claras.</p>
         </div>
         <div class="card">
           <h3>Encontro Surpresa</h3>
-          <p>Combinação cross-industry inesperada com roteiro mínimo.</p>
+          <p>Combinação cross-industry inesperada com roteiro mínimo de facilitação automático.</p>
         </div>
       </div>
       <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">03 / 09</div>
     </div>
 
-    <!-- Slide 4: Workflow -->
+    <!-- 3. Workflow -->
     <div class="slide" data-slide="3">
       <h2>Workflow de Eventos</h2>
-      <p style="margin-top: 1rem; font-size: 1.4rem; letter-spacing: 0.05em;">
-        Ideação → Em Formulação → Agendado → Em Andamento → Realizado → Encerrado
-      </p>
-      <ul style="margin-top: 2.5rem;">
-        <li><strong>Ideação</strong> — Conceito inicial</li>
+      <div class="flow">
+        <span>Ideação</span> →
+        <span>Em Formulação</span> →
+        <span>Agendado</span> →
+        <span>Em Andamento</span> →
+        <span>Realizado</span> →
+        <span>Encerrado</span>
+      </div>
+      <ul style="margin-top: 1.2rem;">
+        <li><strong>Ideação</strong> — Conceito inicial do evento</li>
         <li><strong>Em Formulação</strong> — Formato, público e logística</li>
-        <li><strong>Agendado</strong> — Data, local e participantes</li>
-        <li><strong>Em Andamento</strong> — Execução ao vivo</li>
+        <li><strong>Agendado</strong> — Data, local e participantes confirmados</li>
+        <li><strong>Em Andamento</strong> — Execução ao vivo com randomizers</li>
         <li><strong>Realizado</strong> — Feedback e registro</li>
         <li><strong>Encerrado</strong> — Arquivamento final</li>
       </ul>
       <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">04 / 09</div>
     </div>
 
-    <!-- Slide 5: Tech Stack -->
+    <!-- 4. Arquitetura -->
     <div class="slide" data-slide="4">
-      <h2>Tech Stack</h2>
-      <ul style="margin-top: 1.5rem;">
-        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript (Vanilla)</li>
-        <li><strong>Apresentação:</strong> Slide Deck responsivo (1920×1080)</li>
-        <li><strong>Gestão:</strong> ClickUp (Lists, Custom Fields, Automations)</li>
-        <li><strong>Versionamento:</strong> GitHub</li>
-      </ul>
+      <h2>Arquitetura de Módulos</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Randomizer</h3>
+          <p>theme-sorter<br>participant-matcher<br>lightning-debate<br>surprise-encounter</p>
+        </div>
+        <div class="card">
+          <h3>Events</h3>
+          <p>event-manager<br>scheduler<br>state machine</p>
+        </div>
+        <div class="card">
+          <h3>Core</h3>
+          <p>config<br>utils<br>clickup-client</p>
+        </div>
+      </div>
+      <p style="margin-top: 1.8rem;">JavaScript Vanilla (ES Modules) • Sem frameworks pesados • Pronto para evoluir.</p>
       <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">05 / 09</div>
     </div>
 
-    <!-- Slide 6: Encerramento -->
+    <!-- 5. Temas Filosóficos -->
     <div class="slide" data-slide="5">
+      <h2>Banco de Temas (40)</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Categorias</h3>
+          <p>Existencial • Linguagem • Tempo<br>Identidade • Comunidade • Ética<br>Amor • Dor • Poder • Natureza</p>
+        </div>
+        <div class="card">
+          <h3>Exemplo real</h3>
+          <p><strong>Arquitetos de charadas</strong><br>“Somos eternos arquitetos de enigmas ou apenas intérpretes da natureza singela?”</p>
+        </div>
+      </div>
+      <p style="margin-top: 1.6rem;">Cada tema carrega peso + provocação. O histórico reduz a chance de repetição.</p>
+      <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">06 / 09</div>
+    </div>
+
+    <!-- 6. Integração ClickUp -->
+    <div class="slide" data-slide="6">
+      <h2>Integração ClickUp</h2>
+      <ul>
+        <li>Criação automática de tarefas a partir de eventos</li>
+        <li>Sincronização de status (Ideação → Encerrado)</li>
+        <li>Custom Fields: Formato, Área, Tema, Estado</li>
+        <li>Due date automática quando o evento é agendado</li>
+        <li>Tags e descrição rica geradas pelo sistema</li>
+      </ul>
+      <p style="margin-top: 1.5rem; color: #a0a0b0;">Módulo <code>src/core/clickup-client.js</code> pronto para uso.</p>
+      <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">07 / 09</div>
+    </div>
+
+    <!-- 7. Tech Stack -->
+    <div class="slide" data-slide="7">
+      <h2>Tech Stack</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Frontend</h3>
+          <p>HTML5 • CSS3 • JavaScript Vanilla (ES Modules)</p>
+        </div>
+        <div class="card">
+          <h3>Gestão</h3>
+          <p>ClickUp (Lists, Custom Fields, Automations)</p>
+        </div>
+        <div class="card">
+          <h3>Versionamento</h3>
+          <p>GitHub + Conventional Commits</p>
+        </div>
+        <div class="card">
+          <h3>Apresentação</h3>
+          <p>Slide Deck responsivo 1920×1080</p>
+        </div>
+      </div>
+      <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">08 / 09</div>
+    </div>
+
+    <!-- 8. Encerramento -->
+    <div class="slide" data-slide="8">
       <h1>Obrigado</h1>
       <p class="tagline">Espaço Adventure — Transformando encontros com a filosofia da palavra.</p>
-      <p style="margin-top: 2rem; color: #888;">© 2026 DcsProducer®</p>
+      <p style="margin-top: 2rem; color: #888;">© 2026 DcsProducer® • v1.1</p>
       <div class="brand">DcsProducer®</div>
+      <div class="slide-counter">09 / 09</div>
     </div>
+
   </div>
 
   <div class="nav">

@@ -5,24 +5,32 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.2.0] - 2026-08-03
+
+### Added
+- **Protótipo Interativo** (`prototype/index.html`)
+  - Interface completa com os 4 randomizers ao vivo
+  - Abas: Sorteio de Tema, Match de Participantes, Debate Relâmpago, Encontro Surpresa
+  - Histórico de temas persistido em localStorage
+  - Design dark alinhado à marca DcsProducer®
+- **Documentação ClickUp** (`docs/CLICKUP.md`)
+  - Guia completo de integração, exemplos de código e mapeamento de Custom Fields
+- Documentação Técnica e Funcional atualizadas com a nova estrutura
+
+### Changed
+- README atualizado com seção do protótipo e links para docs
+- Estrutura de pastas documentada (inclusão de `prototype/` e `docs/CLICKUP.md`)
+
 ## [1.1.0] - 2026-08-03
 
 ### Added
 - **ClickUp Client** (`src/core/clickup-client.js`) — Integração completa com a API do ClickUp
-  - Criação automática de tarefas a partir de eventos
-  - Sincronização de status (Ideação → Encerrado)
-  - Suporte a Custom Fields mapeáveis
-  - Due date automática no agendamento
-- **Banco de Temas expandido** — de 5 para **40 temas filosóficos** em 10 categorias
-  - Existencial, Linguagem, Tempo, Identidade, Comunidade, Ética, Amor, Dor, Poder, Natureza
-- **Deck de apresentação v1.1** — 9 slides (antes 6)
-  - Novos slides: Arquitetura de Módulos, Banco de Temas, Integração ClickUp
-  - Contador de slides e fluxo visual melhorado
-- **Testes reais** (`tests/randomizer.test.js`) — cobertura dos principais módulos
+- **Banco de Temas expandido** — 40 temas filosóficos em 10 categorias
+- **Deck de apresentação v1.1** — 9 slides
+- **Testes reais** (`tests/randomizer.test.js`)
 
 ### Changed
-- `theme-sorter.js` agora exporta `getThemesByCategory()` e `getCategories()`
-- Melhorias de documentação e estrutura
+- `theme-sorter.js` exporta `getThemesByCategory()` e `getCategories()`
 
 ## [1.0.0] - 2026-08-02
 

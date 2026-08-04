@@ -2,7 +2,9 @@
 
 > Onde a filosofia da palavra encontra o poder de transformar eventos.
 
-**DcsProducer®** | Produção Criativa de Eventos | **v1.1**
+**DcsProducer®** | Produção Criativa de Eventos | **v1.2**
+
+---
 
 ## Sobre
 
@@ -19,12 +21,46 @@ Plataforma de produção de eventos que une o poder filosófico da linguagem com
 * 📡 Formatos: Presencial, Online, Híbrido
 * 💬 Filosofia da Palavra como motor criativo
 * 🔗 **Integração nativa com ClickUp API**
+* 🖥️ **Protótipo Interativo** pronto para uso
+
+---
+
+## Protótipo Interativo
+
+Abra o protótipo localmente (ES Modules exigem servidor):
+
+```bash
+npx serve .
+# acesse http://localhost:3000/prototype/
+```
+
+Ou:
+
+```bash
+python -m http.server 8000
+# acesse http://localhost:8000/prototype/
+```
+
+---
+
+## Documentação
+
+| Documento | Descrição |
+|-----------|-----------|
+| [TECHNICAL.md](docs/TECHNICAL.md) | Arquitetura, módulos e convenções |
+| [FUNCTIONAL.md](docs/FUNCTIONAL.md) | Regras de negócio e workflow |
+| [CLICKUP.md](docs/CLICKUP.md) | Guia completo de integração com ClickUp |
+| [CHANGELOG.md](docs/CHANGELOG.md) | Histórico de versões |
+
+---
 
 ## Tech Stack
 
 * HTML5 / CSS3 / JavaScript (Vanilla ES Modules)
 * ClickUp (Project Management + API)
-* GitHub Actions (CI/CD previsto)
+* GitHub + Conventional Commits
+
+---
 
 ## Estrutura do Projeto
 
@@ -35,9 +71,12 @@ espaco-adventure/
 ├── docs/
 │   ├── TECHNICAL.md
 │   ├── FUNCTIONAL.md
+│   ├── CLICKUP.md
 │   └── CHANGELOG.md
 ├── presentation/
 │   └── espaco-adventure-deck.html      # Deck 9 slides
+├── prototype/
+│   └── index.html                      # Protótipo interativo
 ├── src/
 │   ├── randomizer/
 │   │   ├── theme-sorter.js             # 40 temas
@@ -50,15 +89,17 @@ espaco-adventure/
 │   └── core/
 │       ├── config.js
 │       ├── utils.js
-│       └── clickup-client.js           # NOVO em v1.1
+│       └── clickup-client.js
 ├── assets/
 │   ├── brand/
 │   │   └── dcsproducer-logo.svg
 │   └── styles/
 │       └── theme.css
 └── tests/
-    └── randomizer.test.js              # Testes reais
+    └── randomizer.test.js
 ```
+
+---
 
 ## Quick Start — ClickUp
 
@@ -68,20 +109,24 @@ import { createEvent, transitionState } from './src/events/event-manager.js';
 
 const clickup = new ClickUpClient('pk_SEU_TOKEN', 'LIST_ID');
 
-// Criar evento + tarefa no ClickUp
 const event = createEvent({ title: 'Encontro Filosófico #1', format: 'hibrido' });
 const task = await clickup.createEventTask(event);
 
-// Mudar estado
 const updated = transitionState(event, 'agendado');
 await clickup.updateEventStatus(task.id, updated.state);
 ```
+
+Veja o guia completo em [docs/CLICKUP.md](docs/CLICKUP.md).
+
+---
 
 ## Rodar os testes
 
 ```bash
 node tests/randomizer.test.js
 ```
+
+---
 
 ## Licença
 

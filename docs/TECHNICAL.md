@@ -1,19 +1,24 @@
 # Documentação Técnica — Espaço Adventure
 
-**DcsProducer® | v1.0 | Agosto 2026**
+**DcsProducer® | v1.1 | Agosto 2026**
+
+---
 
 ## 1. Visão Geral do Projeto
 
-Espaço Adventure é uma plataforma de produção de eventos que combina filosofia da palavra, sistemas de aleatoriedade e entretenimento profissional. Desenvolvido por DcsProducer®.
+Espaço Adventure é uma plataforma de produção de eventos que combina filosofia da palavra, sistemas de aleatoriedade e entretenimento profissional. Desenvolvido por **DcsProducer®**.
 
 ### Stack Tecnológico
 
 | Camada | Tecnologia |
 |--------|------------|
-| Frontend | HTML5, CSS3, JavaScript (Vanilla) |
-| Apresentação | Slide Deck responsivo (1920×1080 scaled) |
-| Gestão | ClickUp (Lists, Custom Fields, Automations) |
-| Versionamento | GitHub |
+| Frontend | HTML5, CSS3, JavaScript (Vanilla ES Modules) |
+| Apresentação | Slide Deck responsivo (1920×1080) |
+| Protótipo | Interface interativa com os 4 randomizers |
+| Gestão | ClickUp (Lists, Custom Fields, Automations + API) |
+| Versionamento | GitHub + Conventional Commits |
+
+---
 
 ## 2. Arquitetura do Sistema
 
@@ -26,12 +31,15 @@ espaco-adventure/
 ├── docs/
 │   ├── TECHNICAL.md
 │   ├── FUNCTIONAL.md
+│   ├── CLICKUP.md
 │   └── CHANGELOG.md
 ├── presentation/
 │   └── espaco-adventure-deck.html
+├── prototype/
+│   └── index.html                  # Protótipo interativo
 ├── src/
 │   ├── randomizer/
-│   │   ├── theme-sorter.js
+│   │   ├── theme-sorter.js         # 40 temas filosóficos
 │   │   ├── participant-matcher.js
 │   │   ├── lightning-debate.js
 │   │   └── surprise-encounter.js
@@ -40,7 +48,8 @@ espaco-adventure/
 │   │   └── scheduler.js
 │   └── core/
 │       ├── config.js
-│       └── utils.js
+│       ├── utils.js
+│       └── clickup-client.js
 ├── assets/
 │   ├── brand/
 │   │   └── dcsproducer-logo.svg
@@ -53,25 +62,31 @@ espaco-adventure/
 ### 2.2 Módulos Principais
 
 #### Randomizer (`src/randomizer/`)
-- **theme-sorter.js** — Sorteio de tema filosófico ponderado
+- **theme-sorter.js** — Sorteio de tema filosófico ponderado (40 temas, 10 categorias)
 - **participant-matcher.js** — Algoritmo de complementaridade cruzada
 - **lightning-debate.js** — Debate relâmpago em tempo real
-- **surprise-encounter.js** — Combinação cross-industry
+- **surprise-encounter.js** — Combinação cross-industry + roteiro mínimo
 
 #### Events (`src/events/`)
-- **event-manager.js** — Ciclo de vida do evento
-- **scheduler.js** — Agendamento e workflow
+- **event-manager.js** — Ciclo de vida do evento (state machine)
+- **scheduler.js** — Agendamento e utilitários de calendário
 
 #### Core (`src/core/`)
 - **config.js** — Configurações globais
-- **utils.js** — Funções utilitárias
+- **utils.js** — Funções utilitárias (shuffle, sample, uid, formatDate)
+- **clickup-client.js** — Cliente completo da API ClickUp
+
+---
 
 ## 3. Convenções de Código
 
-- JavaScript Vanilla (ES6+)
-- Módulos com export/import
-- Comentários JSDoc
+- JavaScript Vanilla (ES6+ Modules)
+- Export/import nativos
+- Comentários JSDoc em todas as funções públicas
 - Testes em `tests/`
+- Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:`, `test:`)
+
+---
 
 ## 4. Branching Strategy
 
@@ -82,14 +97,25 @@ espaco-adventure/
 | `feature/*` | Novas features |
 | `hotfix/*` | Correções urgentes |
 
-## 5. Convenção de Commits
+---
 
-- `feat:` nova funcionalidade
-- `fix:` correção de bug
-- `docs:` atualização de documentação
-- `style:` formatação, sem mudança de lógica
-- `refactor:` reestruturação de código
-- `test:` adição de testes
+## 5. Como rodar
+
+### Protótipo interativo
+Abra `prototype/index.html` em um servidor local (necessário por causa dos ES Modules):
+
+```bash
+npx serve .
+# ou
+python -m http.server 8000
+```
+
+Depois acesse: `http://localhost:8000/prototype/`
+
+### Testes
+```bash
+node tests/randomizer.test.js
+```
 
 ---
 

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espaço Adventure — Protótipo Interativo | DcsProducer®</title>
+  <link rel="stylesheet" href="../assets/styles/theme.css">
+  <style>
+    :root {
+      --brand: #e94560;
+      --brand-soft: rgba(233, 69, 96, 0.15);
+      --bg: #0a0a0f;
+      --surface: #14141f;
+      --text: #f0f0f5;
+      --muted: #9a9ab0;
+      --border: rgba(233, 69, 96, 0.28);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 1.4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    header h1 {
+      font-size: 1.45rem;
+      background: linear-gradient(90deg, #e94560, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header .brand-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
+    }
+    .tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: all 0.2s;
+    }
+    .tab:hover, .tab.active {
+      background: var(--brand-soft);
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+    .panel {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem;
+      animation: fadeIn 0.25s ease;
+    }
+    .panel.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      color: var(--brand);
+      font-size: 1.35rem;
+      margin-bottom: 0.6rem;
+    }
+    .desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.4rem;
+    }
+    .btn {
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      font-weight: 600;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(233, 69, 96, 0.35);
+    }
+    .btn:active { transform: translateY(0); }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--brand);
+      color: var(--brand);
+      margin-left: 0.6rem;
+    }
+    .result {
+      margin-top: 1.6rem;
+      padding: 1.4rem;
+      background: rgba(0,0,0,0.35);
+      border-radius: 10px;
+      border-left: 4px solid var(--brand);
+      min-height: 80px;
+    }
+    .result .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .result .title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .result .provocation {
+      font-style: italic;
+      color: #d0d0e0;
+      font-size: 1.05rem;
+    }
+    .result .meta {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .pair-card, .encounter-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    .pair-card strong, .encounter-card strong {
+      color: var(--brand);
+    }
+    .input-row {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    input, select, textarea {
+      background: #0e0e16;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      min-width: 160px;
+    }
+    textarea { width: 100%; min-height: 70px; resize: vertical; }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #555;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+    .history-list {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--brand-soft);
+      color: var(--brand);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      margin-right: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Espaço Adventure</h1>
+      <div class="brand-tag">PROTÓTIPO INTERATIVO • v1.1</div>
+    </div>
+    <div class="brand-tag">© DcsProducer®</div>
+  </header>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" data-tab="theme">🎲 Sorteio de Tema</button>
+      <button class="tab" data-tab="match">🤝 Match de Participantes</button>
+      <button class="tab" data-tab="debate">⚡ Debate Relâmpago</button>
+      <button class="tab" data-tab="surprise">✨ Encontro Surpresa</button>
+    </div>
+
+    <!-- THEME -->
+    <div class="panel active" id="panel-theme">
+      <h2>Sorteio de Tema Filosófico</h2>
+      <p class="desc">40 temas ponderados. O histórico reduz a chance de repetição.</p>
+      <button class="btn" id="btn-theme">Sortear Tema</button>
+      <button class="btn btn-secondary" id="btn-theme-clear">Limpar Histórico</button>
+      <div class="result" id="result-theme">
+        <div class="label">Aguardando sorteio...</div>
+      </div>
+      <div class="history-list" id="history-theme"></div>
+    </div>
+
+    <!-- MATCH -->
+    <div class="panel" id="panel-match">
+      <h2>Match de Participantes</h2>
+      <p class="desc">Algoritmo de complementaridade cruzada (diversidade de área + interesses + experiência).</p>
+      <div class="input-row">
+        <button class="btn" id="btn-match">Gerar Pares</button>
+        <button class="btn btn-secondary" id="btn-match-sample">Usar participantes de exemplo</button>
+      </div>
+      <div class="result" id="result-match">
+        <div class="label">Clique para gerar pares otimizados</div>
+      </div>
+    </div>
+
+    <!-- DEBATE -->
+    <div class="panel" id="panel-debate">
+      <h2>Debate Relâmpago</h2>
+      <p class="desc">Tema sorteado em tempo real + dois lados definidos + fases da rodada.</p>
+      <button class="btn" id="btn-debate">Iniciar Rodada</button>
+      <div class="result" id="result-debate">
+        <div class="label">Pronto para o confronto</div>
+      </div>
+    </div>
+
+    <!-- SURPRISE -->
+    <div class="panel" id="panel-surprise">
+      <h2>Encontro Surpresa</h2>
+      <p class="desc">Combinação cross-industry com roteiro mínimo de facilitação.</p>
+      <button class="btn" id="btn-surprise">Criar Encontros</button>
+      <div class="result" id="result-surprise">
+        <div class="label">Aguardando combinação</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    ESPAÇO ADVENTURE • DcsProducer® • © 2026
+  </footer>
+
+  <script type="module">
+    import { sortTheme, THEME_BANK } from '../src/randomizer/theme-sorter.js';
+    import { matchParticipants } from '../src/randomizer/participant-matcher.js';
+    import { startLightningRound, getRoundPhases } from '../src/randomizer/lightning-debate.js';
+    import { createSurpriseEncounters } from '../src/randomizer/surprise-encounter.js';
+
+    // Tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ——— Theme ———
+    let themeHistory = JSON.parse(localStorage.getItem('ea_theme_history') || '[]');
+
+    function renderThemeHistory() {
+      const el = document.getElementById('history-theme');
+      if (!themeHistory.length) {
+        el.innerHTML = '';
+        return;
+      }
+      el.innerHTML = '<strong>Histórico:</strong> ' + themeHistory.map(id => {
+        const t = THEME_BANK.find(x => x.id === id);
+        return `<span class="badge">${t ? t.title : id}</span>`;
+      }).join(' ');
+    }
+    renderThemeHistory();
+
+    document.getElementById('btn-theme').addEventListener('click', () => {
+      const { theme, provocation } = sortTheme(themeHistory);
+      themeHistory.push(theme.id);
+      if (themeHistory.length > 15) themeHistory = themeHistory.slice(-15);
+      localStorage.setItem('ea_theme_history', JSON.stringify(themeHistory));
+
+      document.getElementById('result-theme').innerHTML = `
+        <div class="label">Categoria: ${theme.category}</div>
+        <div class="title">${theme.title}</div>
+        <div class="provocation">“${provocation}”</div>
+        <div class="meta">ID: ${theme.id} • Banco: ${THEME_BANK.length} temas</div>
+      `;
+      renderThemeHistory();
+    });
+
+    document.getElementById('btn-theme-clear').addEventListener('click', () => {
+      themeHistory = [];
+      localStorage.removeItem('ea_theme_history');
+      renderThemeHistory();
+      document.getElementById('result-theme').innerHTML = '<div class="label">Histórico limpo. Pronto para novos sorteios.</div>';
+    });
+
+    // ——— Match ———
+    const samplePeople = [
+      { id: 'p1', name: 'Ana Rivera', area: 'filosofia', interests: ['ética', 'linguagem', 'existencialismo'], experience: 9 },
+      { id: 'p2', name: 'Bruno Costa', area: 'tecnologia', interests: ['ia', 'ética', 'futurismo'], experience: 5 },
+      { id: 'p3', name: 'Carla Mendes', area: 'arte', interests: ['performance', 'corpo', 'ritual'], experience: 11 },
+      { id: 'p4', name: 'Diego Almeida', area: 'negócios', interests: ['inovação', 'liderança', 'propósito'], experience: 7 },
+      { id: 'p5', name: 'Elena Vargas', area: 'psicologia', interests: ['vínculo', 'trauma', 'cuidado'], experience: 14 },
+      { id: 'p6', name: 'Fábio Nunes', area: 'música', interests: ['improvisação', 'silêncio', 'ritmo'], experience: 8 },
+    ];
+
+    document.getElementById('btn-match-sample').addEventListener('click', () => {
+      runMatch(samplePeople);
+    });
+
+    document.getElementById('btn-match').addEventListener('click', () => {
+      runMatch(samplePeople);
+    });
+
+    function runMatch(people) {
+      const pairs = matchParticipants(people);
+      if (!pairs.length) {
+        document.getElementById('result-match').innerHTML = '<div class="label">Não foi possível gerar pares.</div>';
+        return;
+      }
+      document.getElementById('result-match').innerHTML = pairs.map((p, i) => `
+        <div class="pair-card">
+          <strong>Par ${i + 1}</strong> — Score: ${(p.score * 100).toFixed(0)}%<br>
+          ${p.pair[0].name} <span class="badge">${p.pair[0].area}</span>
+          ↔
+          ${p.pair[1].name} <span class="badge">${p.pair[1].area}</span>
+        </div>
+      `).join('');
+    }
+
+    // ——— Debate ———
+    document.getElementById('btn-debate').addEventListener('click', () => {
+      const participants = samplePeople.slice(0, 4).map(p => ({ id: p.id, name: p.name }));
+      const round = startLightningRound(participants, { history: themeHistory });
+      const phases = getRoundPhases(round.durationSec);
+
+      document.getElementById('result-debate').innerHTML = `
+        <div class="label">Tema sorteado</div>
+        <div class="title">${round.theme.title}</div>
+        <div class="provocation">“${round.provocation}”</div>
+        <div class="meta" style="margin-top:1rem">
+          <strong>Lado A (defender):</strong> ${round.sides.A.participant.name}<br>
+          <strong>Lado B (desafiar):</strong> ${round.sides.B.participant.name}<br>
+          <strong>Duração:</strong> ${round.durationSec}s
+        </div>
+        <div style="margin-top:1rem">
+          <div class="label">Fases</div>
+          ${phases.map(ph => `<span class="badge">${ph.name} (${ph.durationSec}s)</span>`).join(' ')}
+        </div>
+      `;
+    });
+
+    // ——— Surprise ———
+    document.getElementById('btn-surprise').addEventListener('click', () => {
+      const pros = [
+        { id: 'a1', name: 'Dr. Marcos', area: 'medicina', role: 'cirurgião' },
+        { id: 'a2', name: 'Lívia', area: 'música', role: 'compositora' },
+        { id: 'a3', name: 'Rafael', area: 'direito', role: 'advogado' },
+        { id: 'a4', name: 'Sofia', area: 'culinária', role: 'chef' },
+        { id: 'a5', name: 'Thiago', area: 'arquitetura', role: 'arquiteto' },
+        { id: 'a6', name: 'Paula', area: 'dança', role: 'coreógrafa' },
+      ];
+      const encounters = createSurpriseEncounters(pros, 2);
+
+      document.getElementById('result-surprise').innerHTML = encounters.map((e, i) => `
+        <div class="encounter-card">
+          <strong>Encontro ${i + 1}</strong><br>
+          ${e.group.map(g => `${g.name} <span class="badge">${g.area}</span>`).join(' + ')}<br><br>
+          <em>${e.scriptHint.opening}</em><br>
+          <span style="color:var(--muted);font-size:0.9rem">${e.scriptHint.prompt}</span>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

@@ -148,7 +148,6 @@
       font-size: 0.78rem;
       letter-spacing: 0.08em;
     }
-    /* ClickUp panel */
     .clickup-panel {
       margin-top: 2rem;
       padding: 1.4rem;
@@ -293,17 +292,26 @@
 
     let lastTheme = null;
 
-    // Tabs
+    function activateTab(name) {
+      const allowed = ['theme', 'match', 'debate', 'surprise', 'clickup'];
+      if (!allowed.includes(name)) name = 'theme';
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      const tab = document.querySelector(`.tab[data-tab="${name}"]`);
+      const panel = document.getElementById('panel-' + name);
+      if (tab) tab.classList.add('active');
+      if (panel) panel.classList.add('active');
+    }
+
+    // Deep-link from landing: ?tab=theme|match|debate|surprise|clickup
+    const params = new URLSearchParams(window.location.search);
+    const initialTab = params.get('tab') || 'theme';
+    activateTab(initialTab);
+
     document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-      });
+      tab.addEventListener('click', () => activateTab(tab.dataset.tab));
     });
 
-    // Theme
     let themeHistory = JSON.parse(localStorage.getItem('ea_theme_history') || '[]');
 
     function renderThemeHistory() {
@@ -342,7 +350,6 @@
       document.getElementById('result-theme').innerHTML = '<div class="label">Histórico limpo.</div>';
     });
 
-    // Match
     const samplePeople = [
       { id: 'p1', name: 'Ana Rivera', area: 'filosofia', interests: ['ética', 'linguagem', 'existencialismo'], experience: 9 },
       { id: 'p2', name: 'Bruno Costa', area: 'tecnologia', interests: ['ia', 'ética', 'futurismo'], experience: 5 },
@@ -364,7 +371,6 @@
         : '<div class="label">Não foi possível gerar pares.</div>';
     });
 
-    // Debate
     document.getElementById('btn-debate').addEventListener('click', () => {
       const participants = samplePeople.slice(0, 4).map(p => ({ id: p.id, name: p.name }));
       const round = startLightningRound(participants, { history: themeHistory });
@@ -384,7 +390,6 @@
         </div>`;
     });
 
-    // Surprise
     document.getElementById('btn-surprise').addEventListener('click', () => {
       const pros = [
         { id: 'a1', name: 'Dr. Marcos', area: 'medicina', role: 'cirurgião' },
@@ -404,7 +409,6 @@
         </div>`).join('');
     });
 
-    // ClickUp config
     const cfg = JSON.parse(localStorage.getItem('ea_clickup_config') || '{}');
     if (cfg.token) document.getElementById('cu-token').value = cfg.token;
     if (cfg.listId) document.getElementById('cu-list').value = cfg.listId;
@@ -459,7 +463,6 @@
 
     document.getElementById('btn-theme-to-clickup').addEventListener('click', async () => {
       if (!lastTheme) return;
-      // switch to clickup tab visually optional
       const title = `Tema: ${lastTheme.theme.title}`;
       const event = createEvent({
         title,
@@ -468,7 +471,7 @@
       });
       event.theme = lastTheme.theme;
       event.theme.provocation = lastTheme.provocation;
-      document.querySelector('[data-tab="clickup"]').click();
+      activateTab('clickup');
       statusBox('info', 'Enviando tema sorteado...');
       await sendToClickUp(event);
     });

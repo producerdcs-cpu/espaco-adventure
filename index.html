@@ -26,13 +26,8 @@
       max-width: 900px;
       margin: 0 auto;
     }
-    .logo-wrap {
-      margin-bottom: 1.5rem;
-    }
-    .logo-wrap img {
-      height: 52px;
-      width: auto;
-    }
+    .logo-wrap { margin-bottom: 1.5rem; }
+    .logo-wrap img { height: 52px; width: auto; }
     h1 {
       font-size: clamp(2.4rem, 6vw, 3.8rem);
       font-weight: 800;
@@ -79,12 +74,26 @@
       width: 100%;
       max-width: 720px;
     }
-    .feature {
+    a.feature {
+      display: block;
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: var(--radius);
       padding: 1.25rem;
       text-align: left;
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    a.feature:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-primary);
+      box-shadow: 0 8px 24px rgba(233, 69, 96, 0.2);
+      color: inherit;
+    }
+    a.feature:active {
+      transform: translateY(-1px);
     }
     .feature h3 {
       color: var(--color-primary);
@@ -94,6 +103,14 @@
     .feature p {
       font-size: 0.85rem;
       color: var(--color-text-muted);
+    }
+    .feature .hint {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.72rem;
+      color: var(--color-primary);
+      letter-spacing: 0.04em;
+      opacity: 0.85;
     }
     footer {
       text-align: center;
@@ -118,22 +135,26 @@
       <a class="btn btn-lg btn-outline" href="https://github.com/producerdcs-cpu/espaco-adventure">GitHub</a>
     </div>
     <div class="grid">
-      <div class="feature">
+      <a class="feature" href="prototype/?tab=theme">
         <h3>🎲 40 Temas</h3>
         <p>Sorteio filosófico ponderado com histórico inteligente.</p>
-      </div>
-      <div class="feature">
+        <span class="hint">Abrir aba →</span>
+      </a>
+      <a class="feature" href="prototype/?tab=match">
         <h3>🤝 Match</h3>
         <p>Complementaridade cruzada entre participantes.</p>
-      </div>
-      <div class="feature">
+        <span class="hint">Abrir aba →</span>
+      </a>
+      <a class="feature" href="prototype/?tab=debate">
         <h3>⚡ Debate</h3>
         <p>Rodadas relâmpago com fases estruturadas.</p>
-      </div>
-      <div class="feature">
+        <span class="hint">Abrir aba →</span>
+      </a>
+      <a class="feature" href="prototype/?tab=clickup">
         <h3>🔗 ClickUp</h3>
         <p>Envio real de eventos para a sua List.</p>
-      </div>
+        <span class="hint">Abrir aba →</span>
+      </a>
     </div>
   </div>
   <footer>ESPAÇO ADVENTURE • © 2026 DcsProducer® • v1.3</footer>

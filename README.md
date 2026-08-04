@@ -2,7 +2,20 @@
 
 > Onde a filosofia da palavra encontra o poder de transformar eventos.
 
-**DcsProducer®** | Produção Criativa de Eventos | **v1.2**
+**DcsProducer®** | Produção Criativa de Eventos | **v1.3**
+
+---
+
+## Links públicos (GitHub Pages)
+
+> Ative em **Settings → Pages → Branch `main` / root** (uma vez). Detalhes em [docs/GITHUB-PAGES.md](docs/GITHUB-PAGES.md).
+
+| Recurso | URL |
+|---------|-----|
+| **Landing** | https://producerdcs-cpu.github.io/espaco-adventure/ |
+| **Protótipo interativo** | https://producerdcs-cpu.github.io/espaco-adventure/prototype/ |
+| **Deck de slides** | https://producerdcs-cpu.github.io/espaco-adventure/presentation/espaco-adventure-deck.html |
+| **Código** | https://github.com/producerdcs-cpu/espaco-adventure |
 
 ---
 
@@ -12,118 +25,63 @@ Plataforma de produção de eventos que une o poder filosófico da linguagem com
 
 ## Features
 
-* 🎲 **Sistema de Aleatoriedade (4 modos)**
-  - Sorteio de Tema (40 temas filosóficos ponderados)
-  - Match de Participantes (complementaridade cruzada)
-  - Debate Relâmpago (tempo real)
-  - Encontro Surpresa (cross-industry)
-* 🎭 6 Áreas de Entretenimento
-* 📡 Formatos: Presencial, Online, Híbrido
-* 💬 Filosofia da Palavra como motor criativo
-* 🔗 **Integração nativa com ClickUp API**
-* 🖥️ **Protótipo Interativo** pronto para uso
+* 🎲 **4 modos de aleatoriedade** (40 temas filosóficos)
+* 🤝 Match de participantes por complementaridade
+* ⚡ Debate relâmpago + ✨ Encontro surpresa
+* 🔗 Integração ClickUp (cliente + UI no protótipo)
+* 🖥️ Landing visual + protótipo com marca DcsProducer®
 
 ---
 
-## Protótipo Interativo
+## O que é estático vs funcional real
 
-Abra o protótipo localmente (ES Modules exigem servidor):
+| Parte | Status |
+|-------|--------|
+| Randomizers (tema, match, debate, surpresa) | **Funcional real** |
+| Protótipo no navegador | **Funcional real** (ES Modules) |
+| Config ClickUp (localStorage) | **Funcional** |
+| Envio ClickUp pelo browser | **Tenta real** — pode bloquear por CORS; Node funciona 100% |
+| Landing / Deck | Visual + navegação |
+
+---
+
+## Rodar local / Download
 
 ```bash
+git clone https://github.com/producerdcs-cpu/espaco-adventure.git
+cd espaco-adventure
 npx serve .
-# acesse http://localhost:3000/prototype/
 ```
 
-Ou:
+- Landing: http://localhost:3000/
+- Protótipo: http://localhost:3000/prototype/
 
-```bash
-python -m http.server 8000
-# acesse http://localhost:8000/prototype/
-```
+Guia completo: [docs/DOWNLOAD.md](docs/DOWNLOAD.md)
 
 ---
 
 ## Documentação
 
-| Documento | Descrição |
-|-----------|-----------|
-| [TECHNICAL.md](docs/TECHNICAL.md) | Arquitetura, módulos e convenções |
-| [FUNCTIONAL.md](docs/FUNCTIONAL.md) | Regras de negócio e workflow |
-| [CLICKUP.md](docs/CLICKUP.md) | Guia completo de integração com ClickUp |
-| [CHANGELOG.md](docs/CHANGELOG.md) | Histórico de versões |
+| Doc | Descrição |
+|-----|-----------|
+| [TECHNICAL.md](docs/TECHNICAL.md) | Arquitetura |
+| [FUNCTIONAL.md](docs/FUNCTIONAL.md) | Regras de negócio |
+| [CLICKUP.md](docs/CLICKUP.md) | Integração ClickUp |
+| [GITHUB-PAGES.md](docs/GITHUB-PAGES.md) | Publicar link permanente |
+| [DOWNLOAD.md](docs/DOWNLOAD.md) | Clone / ZIP / uso local |
+| [CHANGELOG.md](docs/CHANGELOG.md) | Versões |
 
 ---
 
-## Tech Stack
-
-* HTML5 / CSS3 / JavaScript (Vanilla ES Modules)
-* ClickUp (Project Management + API)
-* GitHub + Conventional Commits
-
----
-
-## Estrutura do Projeto
-
-```
-espaco-adventure/
-├── README.md
-├── LICENSE
-├── docs/
-│   ├── TECHNICAL.md
-│   ├── FUNCTIONAL.md
-│   ├── CLICKUP.md
-│   └── CHANGELOG.md
-├── presentation/
-│   └── espaco-adventure-deck.html      # Deck 9 slides
-├── prototype/
-│   └── index.html                      # Protótipo interativo
-├── src/
-│   ├── randomizer/
-│   │   ├── theme-sorter.js             # 40 temas
-│   │   ├── participant-matcher.js
-│   │   ├── lightning-debate.js
-│   │   └── surprise-encounter.js
-│   ├── events/
-│   │   ├── event-manager.js
-│   │   └── scheduler.js
-│   └── core/
-│       ├── config.js
-│       ├── utils.js
-│       └── clickup-client.js
-├── assets/
-│   ├── brand/
-│   │   └── dcsproducer-logo.svg
-│   └── styles/
-│       └── theme.css
-└── tests/
-    └── randomizer.test.js
-```
-
----
-
-## Quick Start — ClickUp
+## Quick Start — ClickUp (Node)
 
 ```js
 import { ClickUpClient } from './src/core/clickup-client.js';
-import { createEvent, transitionState } from './src/events/event-manager.js';
+import { createEvent } from './src/events/event-manager.js';
 
 const clickup = new ClickUpClient('pk_SEU_TOKEN', 'LIST_ID');
-
-const event = createEvent({ title: 'Encontro Filosófico #1', format: 'hibrido' });
+const event = createEvent({ title: 'Encontro #1', format: 'hibrido' });
 const task = await clickup.createEventTask(event);
-
-const updated = transitionState(event, 'agendado');
-await clickup.updateEventStatus(task.id, updated.state);
-```
-
-Veja o guia completo em [docs/CLICKUP.md](docs/CLICKUP.md).
-
----
-
-## Rodar os testes
-
-```bash
-node tests/randomizer.test.js
 ```
 
 ---
